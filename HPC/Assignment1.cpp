@@ -26,6 +26,7 @@ public:
     }
 
     // Parallel Breadth First Search
+    // Parallel Breadth First Search
     void parallelBFS(int source)
     {
         vector<bool> visited(V, false);
@@ -36,23 +37,30 @@ public:
 
         while (!q.empty())
         {
-#pragma omp parallel
+#pragma omp parallel shared(q, visited)
             {
 #pragma omp for
                 for (int i = 0; i < q.size(); ++i)
                 {
-                    int u = q.front();
-                    q.pop();
+                    int u;
+#pragma omp critical
+                    {
+                        u = q.front();
+                        q.pop();
+                    }
                     cout << u << " ";
 
-// Enqueue adjacent vertices of the dequeued vertex
-#pragma omp for
-                    for (int v : adj[u])
+                    // Enqueue adjacent vertices of the dequeued vertex
+                    for (int j = 0; j < adj[u].size(); ++j)
                     {
+                        int v = adj[u][j];
                         if (!visited[v])
                         {
-                            visited[v] = true;
-                            q.push(v);
+#pragma omp critical
+                            {
+                                visited[v] = true;
+                                q.push(v);
+                            }
                         }
                     }
                 }
@@ -60,6 +68,7 @@ public:
         }
     }
 
+    // Parallel Depth First Search
     // Parallel Depth First Search
     void parallelDFSUtil(int v, vector<bool> &visited)
     {
