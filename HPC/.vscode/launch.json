@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/bramh/Desktop/PICT/BE SEM VIII/College/LP-V/HPC",
-      "program": "c:/Users/bramh/Desktop/PICT/BE SEM VIII/College/LP-V/HPC/build/Debug/outDebug",
+      "cwd": "c:/Users/bramh/Desktop/PICT/BE SEM VIII/College/LP-5/HPC",
+      "program": "c:/Users/bramh/Desktop/PICT/BE SEM VIII/College/LP-5/HPC/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
